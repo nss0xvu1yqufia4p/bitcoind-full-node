@@ -8,3 +8,9 @@ if [[ "$test" != "$filename: OK" ]]; then
 fi
 tar xvf $filename
 install -m 0755 -o root -g root -t /usr/local/bin bitcoin-0.21.0/bin/*
+mkdir ~/.bitcoin
+cp bitcoin.conf ~/.bitcoin/
+unlink /etc/nginx/sites-enabled/default
+cp ./reverse-proxy.conf /etc/nginx/sites-available/
+ln -s /etc/nginx/sites-available/reverse-proxy.conf /etc/nginx/sites-enabled/reverse-proxy.conf
+
